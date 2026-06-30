@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TecnoJuan.web</title>
+
+  <link rel="stylesheet" href="style.CSS">
+  <link rel="icon" href="fotos/t de tecnojuan.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- PANTALLA DE LOGIN -->
+<div id="loginOverlay" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #001a4d 0%, #003366 60%, #0047ff 100%);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+">
+  <img src="fotos/t de tecnojuan.jpg" width="110" style="
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid #ffcc00;
+    box-shadow: 0 0 30px rgba(255,204,0,0.4);
+  ">
+  <h1 style="font-size: 2rem; margin: 0 0 5px;">TecnoJuan.web</h1>
+  <p style="color: #ffcc00; font-style: italic; font-weight: bold; margin: 0 0 10px;">
+    ⚡ El código es tu superpoder.
+  </p>
+  <p style="color: #cce0ff; margin: 0 0 30px; font-size: 15px;">
+    Inicia sesión con Google para acceder al contenido
+  </p>
+  <button id="googleLoginOverlay" style="
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    background: white;
+    color: #003366;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  "
+  onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)';"
+  onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.3)';"
+  >
+    <svg width="20" height="20" viewBox="0 0 48 48">
+      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+    </svg>
+    Acceder con Google
+  </button>
+  <p id="loginError" style="color:#ff6b6b; margin-top:15px; display:none; font-size:14px;"></p>
+</div>
+
+
+<!-- CONTENIDO PRINCIPAL (oculto hasta login) -->
+<div id="mainContent" style="display: none;">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="fotos/t de tecnojuan.jpg" width="80">
+      <h1>TecnoJuan.web</h1>
+    </div>
+
+    <p class="slogan">⚡ El código es tu superpoder.</p>
+
+    <nav class="navbar">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#tutorial-video">Tutorial</a></li>
+        <li><a href="#videos-seccion">Videos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li>
+          <button id="btnCerrarSesion" onclick="cerrarSesion()" style="
+            background: #ffcc00;
+            color: #003366;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+          ">
+            🚪 Cerrar sesión
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="overlay">
+      <h2>💻 Dale vida a tus ideas con programación</h2>
+      <p>Convierte tu creatividad en proyectos reales a través del código.</p>
+      <a href="#videos-seccion" class="btn">Comienza ahora</a>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos-seccion" class="content-section">
+    <h2>🎥 Aprende en video</h2>
+    <div class="card">
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/qHAilBtZ3nE"
+        frameborder="0" allowfullscreen></iframe>
+      <a href="#tutorial-video" class="btn">siguiente</a>
+    </div>
+  </section>
+
+  <!-- ARTÍCULOS -->
+  <section id="articulos-destacados" class="content-section">
+    <h2>💻 Artículos Destacados de Programación</h2>
+    <div class="contenedor-tarjetas">
+
+      <div class="card-articulo">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80">
+        <div class="card-content">
+          <div class="categoria">PROGRAMACIÓN</div>
+          <div class="titulo">Mi primera aventura programando</div>
+          <a class="boton" href="fotos/html1.pdf" target="_blank">REALIZA</a>
+        </div>
+      </div>
+
+      <div class="card-articulo">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80">
+        <div class="card-content">
+          <div class="categoria">PROGRAMACIÓN</div>
+          <div class="titulo">Complementa lo aprendido sobre html, css y js</div>
+          <a class="boton" href="fotos/html2.pdf" target="_blank">REALIZA</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTRODUCCIÓN -->
+  <section id="tutorial-video" class="content-section">
+    <h2>🎥 INTRODUCCIÓN AL CURSO</h2>
+    <div class="card">
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/fT5FKTmpQYw"
+        frameborder="0" allowfullscreen></iframe>
+        <a href="#sublimefoto" class="btn">siguiente</a>
+    </div>
+  </section>
+
+  <!-- SUBLIME -->
+  <section id="sublimefoto" class="content-section">
+    <div class="step-box">
+      <h2>Primer paso: descargar un editor de código</h2>
+      <p>Usa Sublime Text, VS Code o Bloc de notas.</p>
+      <img src="fotos/logo de sublime.jpg">    
+    </div>
+  </section>
+
+  <!-- INSTALACIÓN -->
+  <section id="instalacion" class="content-section">
+    <div class="card">
+      <h2>🎥 INSTALACIÓN DE SUBLIME TEXT</h2>
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/LwyAwItiiPQ"
+        frameborder="0" allowfullscreen></iframe>
+        <a href="#documentohtml" class="btn">siguiente</a>
+    </div>
+  </section>
+
+  <!-- HTML -->
+  <section id="documentohtml" class="content-section">
+    <div class="card">
+      <h2>CREAR UN DOCUMENTO EN HTML</h2>
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/DdexgoY9qJE"
+        frameborder="0" allowfullscreen></iframe>
+        <a href="#estructurahtml" class="btn">siguiente</a>
+    </div>
+  </section>
+
+  <!-- ESTRUCTURA -->
+  <section id="estructurahtml" class="content-section">
+    <div class="step-box">
+      <h2>Aprende HTML</h2>
+      <p>HTML es el lenguaje base para estructurar páginas web.</p>
+      <img src="fotos/estructura de html.jpg">
+    </div>
+  </section>
+
+  <!-- VIDEO HTML -->
+  <section id="titulos" class="content-section">
+    <h2>Títulos y otras etiquetas iniciales</h2>
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed/C5Rck_icVKQ"
+      frameborder="0" allowfullscreen></iframe>
+<a href="#insertarimagen" class="btn">siguiente</a>
+  </section>
+
+  <!-- IMÁGENES -->
+  <section id="insertarimagen" class="content-section">
+    <div class="card">
+      <h2>INSERTAR IMÁGENES EN HTML</h2>
+      <iframe width="100%" height="315"
+        src="https://www.youtube.com/embed/DBm2t0lcWT4"
+        frameborder="0" allowfullscreen></iframe>
+        <a href="#articulos-destacados" id="sixseven" class="btn">Complementa lo aprendido :D</a>
+    </div>
+  </section>
+
+  <!-- COMENTARIOS -->
+  <section id="comentarios" class="content-section">
+    <h2>💬 Comentarios</h2>
+    <form id="commentForm">
+      <input type="text" id="username" placeholder="Tu nombre" required>
+      <textarea id="commentText" placeholder="Escribe tu comentario..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="commentsList"></div>
+  </section>
+
+</div>
+<!-- FIN CONTENIDO PRINCIPAL -->
+
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAw-tDNM8jyqIjywsnFXozvOyUH6Sgkpns",
+  authDomain: "tecnojuan-93a80.firebaseapp.com",
+  projectId: "tecnojuan-93a80",
+  storageBucket: "tecnojuan-93a80.firebasestorage.app",
+  messagingSenderId: "480172161238",
+  appId: "1:480172161238:web:d07a2e22f538e2c4617177",
+  measurementId: "G-4GVHTWKTQL"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const overlay = document.getElementById("loginOverlay");
+const mainContent = document.getElementById("mainContent");
+
+// LOGIN CON GOOGLE
+async function loginConGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const errorMsg = document.getElementById("loginError");
+  try {
+    const result = await auth.signInWithPopup(provider);
+    const user = result.user;
+    await db.collection("usuarios").doc(user.uid).set({
+      nombre: user.displayName,
+      email: user.email,
+      foto: user.photoURL,
+      fecha: new Date()
+    });
+  } catch(error) {
+    console.error(error);
+    errorMsg.style.display = "block";
+    errorMsg.textContent = "❌ Error al iniciar sesión. Intenta de nuevo.";
+  }
+}
+
+// CERRAR SESIÓN
+async function cerrarSesion() {
+  await auth.signOut();
+}
+
+// BOTÓN LOGIN
+document.getElementById("googleLoginOverlay").addEventListener("click", loginConGoogle);
+
+// DETECTAR AUTENTICACIÓN
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    overlay.style.display = "none";
+    mainContent.style.display = "block";
+  } else {
+    overlay.style.display = "flex";
+    mainContent.style.display = "none";
+  }
+});
+
+// COMENTARIOS
+const form = document.getElementById("commentForm");
+const commentsList = document.getElementById("commentsList");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value;
+  const comment = document.getElementById("commentText").value;
+  await db.collection("comments").add({
+    username,
+    comment,
+    createdAt: new Date()
+  });
+  form.reset();
+  loadComments();
+});
+
+async function loadComments() {
+  const snapshot = await db.collection("comments").get();
+  commentsList.innerHTML = "";
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    commentsList.innerHTML += `
+      <div class="comment">
+        <strong>${data.username}</strong>
+        <p>${data.comment}</p>
+      </div>
+    `;
+  });
+}
+
+loadComments();
+
+</script>
+ <footer id="contacto">
+    <p>&copy;Soy un estudiante llamado Juan José Franco Burgos- Planeta Rica, Córdoba — TecnoJuan.web- calle 8#7-56</p>
+    <div class="social">
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="mailto:tecnobarca2015@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>
